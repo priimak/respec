@@ -1,0 +1,79 @@
+{
+  "registers": [
+    [
+      {
+        "name": "PAGE",
+        "hw_block": "pmbus",
+        "description": "...",
+        "rw": [
+          "read",
+          "write"
+        ],
+        "address_space": {
+          "main": "+",
+          "internal": "+"
+        },
+        "fields": [
+          {
+            "page": {
+              "description": "...",
+              "num_type": "ufix8_0"
+            }
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "name": "STATUS_BYTE",
+        "groups": [
+          "rail"
+        ],
+        "hw_block": "pmbus",
+        "description": "...",
+        "rw": [
+          "read"
+        ],
+        "address_space": {
+          "main": "0xA000",
+          "internal": "+"
+        },
+        "fields": [
+          {
+            "busy": {
+              "description": "A fault was declared because the device was busy and unable to respond",
+              "num_type": "ufix1_0"
+            },
+            "off": {
+              "description": "This bit is asserted if the unit is not providing power to the output, regardless of the reason, including simply not being enabled.",
+              "num_type": "ufix1_0"
+            }
+          }
+        ]
+      }
+    ]
+  ],
+  "hw_blocks": {
+    "pmbus": {},
+    "svid": {}
+  },
+  "address_spaces": {
+    "main": {
+      "start_at": "0x0000",
+      "increment": 1
+    },
+    "internal": {
+      "start_at": "0x00000000",
+      "increment": 4
+    }
+  },
+  "groups": {
+    "rail": {
+      "repeat": 4,
+      "addr_increment": {
+        "main": "0xA",
+        "internal": "0xF"
+      }
+    }
+  }
+}
